@@ -4,7 +4,7 @@ module.exports = function (a, b) {
   return new Promise((resolve, reject) => binaryEquals(a, b, resolve, reject))
 }
 
-function binaryEquals (a, b, resolve, reject) {
+function binaryEquals(a, b, resolve, reject) {
   let aBuf = null
   let aEnded = false
 
@@ -26,19 +26,19 @@ function binaryEquals (a, b, resolve, reject) {
   b.on('error', onerror)
   b.on('close', onclose)
 
-  function onerror (err) {
+  function onerror(err) {
     error = err
     a.destroy()
     b.destroy()
   }
 
-  function onclose () {
+  function onclose() {
     if (++closed !== 2) return
     if (error !== null && done === false) reject(error)
     else resolve(equals)
   }
 
-  function ondone (eq) {
+  function ondone(eq) {
     if (done) return
     done = true
 
@@ -48,13 +48,13 @@ function binaryEquals (a, b, resolve, reject) {
     b.destroy()
   }
 
-  function onend () {
+  function onend() {
     if (this === a) aEnded = true
     else bEnded = true
     tick()
   }
 
-  function tick () {
+  function tick() {
     while (done === false) {
       if (aBuf === null) aBuf = a.read()
       if (bBuf === null) bBuf = b.read()
@@ -64,12 +64,12 @@ function binaryEquals (a, b, resolve, reject) {
         return
       }
 
-      if (aBuf !== null && (bBuf === null && bEnded)) {
+      if (aBuf !== null && bBuf === null && bEnded) {
         ondone(false)
         return
       }
 
-      if (bBuf !== null && (aBuf === null && aEnded)) {
+      if (bBuf !== null && aBuf === null && aEnded) {
         ondone(false)
         return
       }

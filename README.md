@@ -10,7 +10,7 @@ npm install binary-stream-equals
 
 ## Usage
 
-``` js
+```js
 const streamEquals = require('binary-stream-equals')
 
 // Note that streamEquals consumes and destroys the streams when done
