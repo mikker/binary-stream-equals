@@ -112,11 +112,7 @@ test('one stream shorter than the other', async function (t) {
     Buffer.from('sjov')
   ])
 
-  const b = Readable.from([
-    Buffer.from('abe'),
-    Buffer.from('fest'),
-    Buffer.from('er')
-  ])
+  const b = Readable.from([Buffer.from('abe'), Buffer.from('fest'), Buffer.from('er')])
 
   const eq = await streamEquals(a, b)
 
@@ -124,11 +120,7 @@ test('one stream shorter than the other', async function (t) {
 })
 
 test('second stream is stream shorter than the other', async function (t) {
-  const a = Readable.from([
-    Buffer.from('abe'),
-    Buffer.from('fest'),
-    Buffer.from('er')
-  ])
+  const a = Readable.from([Buffer.from('abe'), Buffer.from('fest'), Buffer.from('er')])
 
   const b = Readable.from([
     Buffer.from('abe'),
