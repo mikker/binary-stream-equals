@@ -152,5 +152,5 @@ test('one fails', async function (t) {
 
   b.destroy(new Error('stop'))
 
-  t.exception(streamEquals(a, b))
+  await t.exception(streamEquals(a, b))
 })
